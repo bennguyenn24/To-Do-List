@@ -19,14 +19,32 @@ function appendTask(){
 
     //thisArray.map(function)
     //syntax for arrow functions: (args...) => function
+
     todoArr.map((taskItem) =>{
-        //DOM manipulation
-        //create element <li>
-        const newTask = document.createElement('li');
-        //set element.innerText = taskItem
-        newTask.innerText = taskItem;
-        //append to taskContainer
-        taskContainer.append(newTask);
+        //DOM manipulation 1st Part
+            //create element <li>
+            const newTask = document.createElement('li');
+            //set element.innerText = taskItem
+            newTask.innerText = taskItem;
+            //append to taskContainer
+            taskContainer.append(newTask);
+
+        //DOM 2nd part
+        //to add a remove button to each task item; just to create buttons
+            const removeBtn = document.createElement('button');
+            removeBtn.innerText = "X";
+            newTask.append(removeBtn);
+
+            //to add functionality
+            removeBtn.addEventListener('click', () => {
+                //1. wipe off of data storage / array
+                todoArr.splice(todoArr.indexOf(taskItem), 1);
+                //2. wipe off of page / innerText
+                newTask.remove();
+
+            })
+
+
     })
 
 }
